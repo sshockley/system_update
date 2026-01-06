@@ -11,12 +11,12 @@ authors:
   - SimeonOnSecurity (https://simeononsecurity.com)
 license_file: LICENSE
 tags:
-- role
-- system
-- linux
-- windows
+  - role
+  - system
+  - linux
+  - windows
 build_ignore:
-- .github
-- .gitattributes
-- .gitignore
-- .vscode
+  - .github
+  - .gitattributes
+  - .gitignore
+  - .vscode

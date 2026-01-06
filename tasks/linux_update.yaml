@@ -1,5 +1,7 @@
 ---
 - name: Check for available Linux updates
+  tags:
+    - linux_update
   block:
     - name: Update package manager cache (apt)
       ansible.builtin.apt:
@@ -12,14 +14,14 @@
       when: ansible_pkg_mgr == "dnf"
 
     - name: Update package manager cache (yum)
-      ansible.builtin.yum:
+      ansible.builtin.yum: # noqa fqcn[action-core]
         name: "*"
-        state: latest
+        state: latest # noqa package-latest
         update_cache: true
       when: ansible_pkg_mgr == "yum"
 
     - name: Update package manager cache (apk)
-      ansible.builtin.apk:
+      community.general.apk:
         update_cache: true
       when: ansible_pkg_mgr == "apk"
 
@@ -28,15 +30,14 @@
         manager: auto
       register: package_facts
 
+- name: Install Linux updates if available
   tags:
     - linux_update
-
-- name: Install Linux updates if available
   block:
     - name: Install updates using package manager (apt)
       ansible.builtin.package:
         name: "*"
-        state: latest
+        state: latest # noqa package-latest
         update_cache: true
       when: package_facts.ansible_facts.package_mgr == "apt"
 
@@ -50,44 +51,41 @@
     - name: Install updates using package manager (dnf)
       ansible.builtin.package:
         name: "*"
-        state: latest
+        state: latest # noqa package-latest
         update_cache: true
       when: package_facts.ansible_facts.package_mgr == "dnf"
 
     - name: Install updates using dnf
       ansible.builtin.dnf:
         name: "*"
-        state: latest
+        state: latest # noqa package-latest
         update_cache: true
       when: package_facts.ansible_facts.package_mgr == "dnf"
 
     - name: Install updates using package manager (yum)
       ansible.builtin.package:
         name: "*"
-        state: latest
+        state: latest # noqa package-latest
         update_cache: true
       when: package_facts.ansible_facts.package_mgr == "yum"
 
     - name: Install updates using yum
-      ansible.builtin.yum:
+      ansible.builtin.yum:  # noqa fqcn[action-core]
         name: "*"
-        state: latest
+        state: latest # noqa package-latest
         update_cache: true
       when: package_facts.ansible_facts.package_mgr == "yum"
 
     - name: Install updates using package manager (apk)
       ansible.builtin.package:
         name: "*"
-        state: latest
+        state: latest # noqa package-latest
         update_cache: true
       when: package_facts.ansible_facts.package_mgr == "apk"
 
     - name: Install updates using apk
-      ansible.builtin.apk:
+      community.general.apk:
         name: "*"
-        state: latest
+        state: latest # noqa package-latest
         update_cache: true
       when: package_facts.ansible_facts.package_mgr == "apk"
-
-  tags:
-    - linux_update

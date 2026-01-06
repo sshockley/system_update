@@ -19,7 +19,7 @@ galaxy_info:
     - name: Windows
       versions:
         - all
-  author: SimeonOnSecurity
+  author: simeononsecurity
   license: MIT
   galaxy_tags: []
 
