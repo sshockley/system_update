@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "redhat.ansible",
+        "streetsidesoftware.code-spell-checker",
+        "samuelcolvin.jinjahtml",
+        "redhat.vscode-yaml"
+    ]
+}
