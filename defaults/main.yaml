@@ -2,3 +2,6 @@
 # defaults file for windows_update
 # Add any default variables here
 win_category_names: ["CriticalUpdates", "SecurityUpdates", "UpdateRollups"]
+win_reboot: false
+win_server_selection: "managed_server"
+win_skip_optional: false

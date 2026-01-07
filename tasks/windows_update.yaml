@@ -4,7 +4,8 @@
     category_names:
       - '{{ win_category_names }}'
     state: searched
-  become: true
+    server_selection: '{{ win_server_selection }}'
+    skip_optional: '{{ win_skip_optional }}'
   register: win_updates_result
   tags:
     - windows_update
@@ -14,7 +15,9 @@
     category_names:
       - '{{ win_category_names }}'
     state: installed
-  become: true
+    reboot: '{{ win_reboot }}'
+    server_selection: '{{ win_server_selection }}'
+    skip_optional: '{{ win_skip_optional }}'
   when: win_updates_result.updates|length > 0
   tags:
     - windows_update
